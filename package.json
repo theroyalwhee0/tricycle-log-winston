@@ -1,0 +1,44 @@
+{
+  "name": "@tricycle/log-winston",
+  "version": "0.0.1",
+  "description": "Winston Logger Middleware for TricycleJS",
+  "author": "Adam Mill <hismajesty@theroyalwhee.com>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "azure-functions",
+    "log",
+    "winston"
+  ],
+  "main": "dist/index.js",
+  "peerDependencies": {
+    "@azure/functions": ">= 3.2.0 < 4.0.0",
+    "@tricycle/tricycle": ">= 0.0.4 < 0.1.0",
+    "winston": ">= 3.8.1 < 4.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "4.3.1",
+    "@types/mocha": "9.1.1",
+    "@types/sinon": "10.0.12",
+    "@typescript-eslint/eslint-plugin": "5.30.5",
+    "@typescript-eslint/parser": "5.30.5",
+    "chai": "4.3.6",
+    "eslint": "8.19.0",
+    "mocha": "10.0.0",
+    "sinon": "14.0.0",
+    "ts-node": "10.8.2",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "@theroyalwhee0/istype": "3.0.2",
+    "winston-transport": "4.5.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "npm run build && tsc --watch",
+    "lint": "eslint .",
+    "test": "mocha --require ts-node/register test/**/*.test.ts",
+    "test-watch": "mocha --reporter dot --watch --watch-files test/**/*.test.ts --watch-files src/**/*.ts --require ts-node/register test/**/*.test.ts",
+    "dryrun": "npm prune && npm audit && npm run lint && npm test && npm publish --dry-run",
+    "audit": "npm audit --omit dev --omit optional"
+  }
+}
