@@ -1,0 +1,3 @@
+[actions]
+link='npm link @tricycle/tricycle'
+unlink='npm unlink @tricycle/tricycle'
