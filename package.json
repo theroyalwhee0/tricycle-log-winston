@@ -41,13 +41,14 @@
   },
   "scripts": {
     "build": "tsc",
-    "rebuild": "tsc --build --force",
+    "rebuild": "npm run clean && tsc --build --force",
+    "clean": "mkdir -p ./dist && [ ! -z \"$(find ./dist/ -maxdepth 1 -type f -print -quit)\" ] && rm -R ./dist/*",
     "watch": "npm run build && tsc --watch",
     "lint": "eslint .",
     "test": "mocha --require ts-node/register test/**/*.test.ts",
     "test-watch": "mocha --reporter dot --watch --watch-files test/**/*.test.ts --watch-files src/**/*.ts --require ts-node/register test/**/*.test.ts",
     "dryrun": "npm run rebuild && npm prune && npm audit && npm run lint && npm test && npm publish --dry-run",
     "audit": "npm audit --omit dev --omit optional",
-    "publish": "./bin/_publish.sh"
+    "publish": "./bin/publish.sh"
   }
 }
