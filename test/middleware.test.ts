@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { Format } from 'logform';
 import TransportStream from 'winston-transport';
-import { winstonLog, buildOptions } from '../src/middleware';
+import { winstonLog, buildOptions, cloneOptions, StrictLoggerOptions } from '../src/middleware';
 import { MockWinstonContext } from './mock/context';
 
 describe('buildOptions', () => {
@@ -15,7 +15,6 @@ describe('buildOptions', () => {
         const result = buildOptions();
         expect(result).to.be.a('object');
         expect(result.level).to.equal('info');
-        expect(result.format).to.be.an('object');
         expect(result.transports).to.be.an('array');
         expect(result.transports.length).to.equal(0);
     });
@@ -27,14 +26,13 @@ describe('buildOptions', () => {
         });
         expect(result).to.be.a('object');
         expect(result.level).to.equal('debug');
-        expect(result.format).to.be.an('object');
         expect(result.transports).to.be.an('array');
         expect(result.transports.length).to.equal(1);
         expect(result.transports[0]).to.equal(fakeTransport);
     });
     it('should handle being given a transport array', () => {
-        const fakeTransport = {} as TransportStream;
-        const fakeFormat = {} as Format;
+        const fakeTransport = <TransportStream><unknown>{ fake: "transport " };
+        const fakeFormat = <Format><unknown>{ fake: "format " };
         const result = buildOptions({
             level: 'warn',
             format: fakeFormat,
@@ -46,6 +44,25 @@ describe('buildOptions', () => {
         expect(result.transports).to.be.an('array');
         expect(result.transports.length).to.equal(1);
         expect(result.transports[0]).to.equal(fakeTransport);
+    });
+});
+
+describe('cloneOptions', () => {
+    it('should be a function', () => {
+        expect(cloneOptions).to.be.a('function');
+        expect(cloneOptions.length).to.equal(1);
+    });
+    it('should clone options', () => {
+        const options: StrictLoggerOptions = {
+            level: 'warn',
+            transports: []
+        };
+        const result = cloneOptions(options);
+        expect(result).to.be.a('object');
+        expect(result.level).to.equal('warn');
+        expect(result.transports).to.be.an('array');
+        expect(result.transports.length).to.equal(0);
+        expect(result.transports).to.not.equal(options.transports);
     });
 });
 

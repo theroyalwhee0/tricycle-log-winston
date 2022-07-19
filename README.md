@@ -14,6 +14,10 @@ Tricycle Log Winston is a middleware library for [TricycleJS](https://github.com
 
 
 ## History
+- v0.1.0
+     - Working logger middleware.
+- v0.0.2
+    - Fix build.
 - v0.0.1
     - Initial release. Work in progress. Testing integration.
 
