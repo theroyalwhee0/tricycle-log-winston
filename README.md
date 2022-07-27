@@ -8,12 +8,31 @@ Tricycle Log Winston is a middleware library for [TricycleJS](https://github.com
 `npm install @tricycle/log-winston`
 
 
+## Usage
+When creating the application's instance of Tricycle:
+```ts
+import Tricycle from '@tricycle/tricycle';
+import { winstonLog, WinstonContext } from '@tricycle/log-winston';
+
+export default new Tricycle<WinstonContext>()
+    .use(winstonLog({ format: format.simple() });
+```
+
+Within middleware or endpoints:
+```ts
+ctx.log('This will write to the Azure Functions logger');
+```
+
+
 ## Links
 - GitHub: https://github.com/theroyalwhee0/tricycle-log-winston
 - NPM: https://www.npmjs.com/package/@tricycle/log-winston
 
 
 ## History
+- v0.1.1
+    - Update Tricycle and update tests to match.
+    - Add Usage to readme.
 - v0.1.0
      - Working logger middleware.
 - v0.0.2

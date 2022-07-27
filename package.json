@@ -1,18 +1,19 @@
 {
   "name": "@tricycle/log-winston",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Winston Logger Middleware for TricycleJS",
   "author": "Adam Mill <hismajesty@theroyalwhee.com>",
   "license": "Apache-2.0",
   "keywords": [
     "azure-functions",
     "log",
-    "winston"
+    "winston",
+    "tricyclejs"
   ],
   "main": "dist/index.js",
   "peerDependencies": {
     "@azure/functions": ">= 3.2.0 < 4.0.0",
-    "@tricycle/tricycle": ">= 0.0.4 < 0.1.0",
+    "@tricycle/tricycle": ">= 0.0.9 < 0.1.0",
     "winston": ">= 3.8.1 < 4.0.0"
   },
   "devDependencies": {
@@ -35,7 +36,6 @@
   },
   "dependencies": {
     "@theroyalwhee0/istype": "3.0.2",
-    "lodash.clonedeep": "4.5.0",
     "triple-beam": "1.3.0",
     "winston-transport": "4.5.0"
   },
