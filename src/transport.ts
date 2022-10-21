@@ -39,7 +39,7 @@ export class AzureLoggerTransport extends TransportStream {
     }
 
     private isWinstonLogLevel(level: string): level is WinstonLogLevel {
-        return level in winstoneToAzureLevels
+        return level in winstoneToAzureLevels;
     }
 
     private mapWinstonToAzureLevel(level: string): AzureLogLevel {

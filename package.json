@@ -1,6 +1,6 @@
 {
   "name": "@tricycle/log-winston",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Winston Logger Middleware for TricycleJS",
   "author": "Adam Mill <hismajesty@theroyalwhee.com>",
   "license": "Apache-2.0",
@@ -13,7 +13,7 @@
   "main": "dist/index.js",
   "peerDependencies": {
     "@azure/functions": ">= 3.2.0 < 4.0.0",
-    "@tricycle/tricycle": ">= 0.0.9 < 0.1.0",
+    "@tricycle/tricycle": ">= 0.1.0 < 0.2.0",
     "winston": ">= 3.8.1 < 4.0.0"
   },
   "devDependencies": {
@@ -41,14 +41,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "rebuild": "npm run clean && tsc --build --force",
-    "clean": "mkdir -p ./dist && [ ! -z \"$(find ./dist/ -maxdepth 1 -type f -print -quit)\" ] && rm -R ./dist/*",
+    "rebuild": "npm run clean && eslint . --max-warnings 0 && tsc --build --force",
+    "clean": "mkdir -p ./dist && [ ! -z \"$(find ./dist/ -maxdepth 1 -type f -print -quit)\" ] && rm -R ./dist/*; true",
     "watch": "npm run build && tsc --watch",
     "lint": "eslint .",
-    "test": "mocha --require ts-node/register test/**/*.test.ts",
-    "test-watch": "mocha --reporter dot --watch --watch-files test/**/*.test.ts --watch-files src/**/*.ts --require ts-node/register test/**/*.test.ts",
+    "test": "mocha --recursive --check-leaks --extension ts --require ts-node/register test/",
+    "test-watch": "mocha --reporter dot --recursive --check-leaks --extension ts --require ts-node/register --watch-files test/,src/ --watch test/",    
     "dryrun": "npm run rebuild && npm prune && npm audit && npm run lint && npm test && npm publish --dry-run",
-    "audit": "npm audit --omit dev --omit optional",
-    "publish": "./bin/publish.sh"
+    "audit": "npm audit --omit dev"
   }
 }
