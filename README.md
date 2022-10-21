@@ -20,7 +20,7 @@ export default new Tricycle<WinstonContext>()
 
 Within middleware or endpoints:
 ```ts
-ctx.log('This will write to the Azure Functions logger');
+ctx.log.info('This will write to the Azure Functions logger');
 ```
 
 
@@ -30,6 +30,11 @@ ctx.log('This will write to the Azure Functions logger');
 
 
 ## History
+- v0.1.2
+    - Upgrade to work with Tricycle v0.1.x.
+    - Simplify tests.
+    - Improve build and publish.
+    - Exclude .github from npm publish.
 - v0.1.1
     - Update Tricycle and update tests to match.
     - Add Usage to readme.

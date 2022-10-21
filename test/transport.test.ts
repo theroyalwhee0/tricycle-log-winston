@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { LogEntry } from 'winston';
 import { Logger as AzureLogger } from '@azure/functions';
 import { AzureLoggerTransport, LogEntryWithSumbols } from '../src/transport';
-import { mockAzureLogger } from './mock/azurefunction';
+import { mockAzureLogger } from './mock/azure';
 import { MESSAGE, LEVEL } from 'triple-beam';
 
 describe('AzureLoggerTransport', () => {
@@ -16,8 +16,8 @@ describe('AzureLoggerTransport', () => {
         const transport = new AzureLoggerTransport(logger);
         const cb = spy();
         const logEntry: LogEntry = {
-            level: "info",
-            message: "Test"
+            level: 'info',
+            message: 'Test',
         };
         transport.log(logEntry, cb);
         expect(cb.callCount).to.equal(1);
@@ -29,8 +29,8 @@ describe('AzureLoggerTransport', () => {
         const logEntry: LogEntryWithSumbols = {
             level: 'info',
             message: 'Test',
-            [LEVEL]: "info",
-            [MESSAGE]: "Test"
+            [LEVEL]: 'info',
+            [MESSAGE]: 'Test',
         };
         transport.log(logEntry, cb);
         expect(cb.callCount).to.equal(1);
